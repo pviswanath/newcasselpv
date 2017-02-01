@@ -12,9 +12,9 @@ class UsersTableSeeder extends Seeder {
         DB::table('users')->delete();
         User::create([  'name' => 'Administrator', 'password' => bcrypt('secret'), 'email' => 'cdevarahallibalakr@unomaha.edu', 'active' => true,
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
-        /*User::create([  'name' => 'Sachin Pawaskar', 'password' => bcrypt('secret'), 'email' => 'spawaskar@unomaha.edu', 'active' => true,
+        User::create([  'name' => 'Gopinath Vijayarangan', 'password' => bcrypt('secret'), 'email' => 'gvijayarangan@unomaha.edu', 'active' => true,
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
-        User::create([  'name' => 'George Royce', 'password' => bcrypt('secret'), 'email' => 'groyce@unomaha.edu', 'active' => true,
+        /*User::create([  'name' => 'George Royce', 'password' => bcrypt('secret'), 'email' => 'groyce@unomaha.edu', 'active' => true,
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
         User::create([  'name' => 'Quinn Nelson', 'password' => bcrypt('secret'), 'email' => 'qnelson@unomaha.edu', 'active' => true,
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
@@ -32,7 +32,7 @@ class RolesTableSeeder extends Seeder {
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
         Role::create([ 'name' => 'engineer', 'display_name' => 'Engineer', 'description' => 'Engineer is allowed to read a work order and update it',
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
-        Role::create([ 'name' => 'basic_emp', 'display_name' => 'Basic Employee', 'description' => 'Basic Employee is allowed to raise a work order for a user and see all tasks',
+        Role::create([ 'name' => 'employee', 'display_name' => 'Employee', 'description' => 'Employee is allowed to raise a work order for a user and see all tasks',
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
         Role::create([ 'name' => 'contact', 'display_name' => 'Contact', 'description' => 'Contact is allowed to raise a work order',
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
@@ -68,12 +68,12 @@ class RoleUserTableSeeder extends Seeder {
         $role_user = [ ['role_id' => $role, 'user_id' => $user, 'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create() ] ];
         DB::table('role_user')->insert($role_user);
 
-        /* $user = User::where('name', '=', 'Sachin Pawaskar')->first()->id;
+         $user = User::where('name', '=', 'Gopinath Vijayarangan')->first()->id;
          $role = Role::where('name', '=', 'admin')->first()->id;
          $role_user = [ ['role_id' => $role, 'user_id' => $user, 'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create() ] ];
          DB::table('role_user')->insert($role_user);
 
-         $user = User::where('name', '=', 'Quinn Nelson')->first()->id;
+        /* $user = User::where('name', '=', 'Quinn Nelson')->first()->id;
          $role = Role::where('name', '=', 'student')->first()->id;
          $role_user = [ ['role_id' => $role, 'user_id' => $user, 'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create() ] ];
          DB::table('role_user')->insert($role_user);
