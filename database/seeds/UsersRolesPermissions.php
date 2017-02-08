@@ -14,9 +14,9 @@ class UsersTableSeeder extends Seeder {
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
         User::create([  'name' => 'Gopinath Vijayarangan', 'password' => bcrypt('secret'), 'email' => 'gvijayarangan@unomaha.edu', 'active' => true,
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
-        User::create([  'name' => 'Korvah', 'password' => bcrypt('secret'), 'email' => 'anjani@unomaha.edu', 'active' => true,
+        User::create([  'name' => 'Anjani', 'password' => bcrypt('secret'), 'email' => 'anjani@unomaha.edu', 'active' => true,
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
-        User::create([  'name' => 'Anjani', 'password' => bcrypt('secret'), 'email' => 'tkorvah@unomaha.edu', 'active' => true,
+        User::create([  'name' => 'Korvah', 'password' => bcrypt('secret'), 'email' => 'tkorvah@unomaha.edu', 'active' => true,
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
         /*User::create([  'name' => 'George Royce', 'password' => bcrypt('secret'), 'email' => 'groyce@unomaha.edu', 'active' => true,
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
