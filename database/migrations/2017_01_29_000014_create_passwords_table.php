@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrcommentTable extends Migration
+class CreatePasswordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,13 @@ class CreateOrcommentTable extends Migration
      */
     public function up()
     {
-        Schema::create('orcomment', function (Blueprint $table) {
-            $table->increments('orcom_id');
-            $table->integer('order_id')->unsigned();
+        Schema::create('passwords', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->timestamps();
-            $table->string('orcom_comments');
+            $table->string('email');
+            $table->string('password');
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('order_id')->references('order_id')->on('order')
                 ->onUpdate('cascade')->onDelete('cascade');
 
           /*  $table->primary(['orcom_id']); */
@@ -36,6 +32,6 @@ class CreateOrcommentTable extends Migration
      */
     public function down()
     {
-        Schema::drop('orcomment');
+        Schema::drop('passwords');
     }
 }
