@@ -16,10 +16,6 @@
     </div>
 
     <div class="form-group">
-        {!!Form::label('cntr_id', 'Center ID:') !!}
-        {{ Form::select('cntr_id', ['Omaha', 'Other']) }}
-    </div>
-    <div class="form-group">
         {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
     </div>
     {!! Form::close() !!}
