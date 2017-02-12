@@ -1,37 +1,17 @@
 <?php
 
-/**
- *|--------------------------------------------------------------------------
- *| Application Routes
- *|--------------------------------------------------------------------------
- *|
- *| Here is where you can register all of the routes for an application.
- *| It's a breeze. Simply tell Laravel the URIs it should respond to
- *| and give it the controller to call when that URI is requested.
- *|
- *
- * @category   Application Routes
- * @package    Basic-Routes
- * @author     Sachin Pawaskar<spawaskar@unomaha.edu>
- * @copyright  2016-2017
- * @license    The MIT License (MIT)
- * @version    GIT: $Id$
- * @since      File available since Release 1.0.0
- */
 
 Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('php-version', function()
-{
+Route::get('php-version', function () {
     return phpinfo();
 });
 
-Route::get('laravel-version', function()
-{
+Route::get('laravel-version', function () {
     $laravel = app();
-    return 'Your Laravel Version is '.$laravel::VERSION;
+    return 'Your Laravel Version is ' . $laravel::VERSION;
 });
 
 /*
@@ -45,21 +25,26 @@ Route::get('laravel-version', function()
 |
 */
 
-     Route::auth();
-    Route::post('change-password', 'Auth\AuthController@updatePassword');
-    Route::get( 'change-password', 'Auth\AuthController@updatePassword');
+Route::auth();
+Route::get('changepasswordpage', 'Auth\AuthController@showUpdatePassword');
+Route::post('change-password', 'Auth\AuthController@updatePassword');
 
-    Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
 
 Route::get('apartment/update/{id}', 'ApartmentsController@edit');
 Route::get('apartment/update information/{id}', 'ApartmentsController@update');
 Route::resource('/apartment', 'ApartmentsController');
-Route::get('/residents','ResidentController@index');
+
+Route::get('/resident/update/{id}', 'ResidentsController@edit');
+Route::get('/resident/update information/{id}', 'ResidentsController@update');
+Route::resource('/resident','ResidentsController');
 
 
+Route::resource('users', 'UsersController');
+Route::resource('roles', 'RolesController');
 
-    Route::resource('users', 'UsersController');
-    Route::resource('roles', 'RolesController');
+Route::resource('/workorder', 'WorkOrderController@index');
+Route::resource('/workorderview', 'WorkOrderController@view');
 
 /*    Route::get('/redirect', 'SocialAuthController@redirect');
     Route::get('/callback', 'SocialAuthController@callback');*/
@@ -67,23 +52,34 @@ Route::get('/residents','ResidentController@index');
 
 Route::get('/reset', 'Auth\AuthController@showPasswordEmailPage');
 
-Route::get('/createPassword', 'Auth\PasswordController@showUserPasswordChange');
+Route::get('/createPassword/{id}', 'Auth\PasswordController@showUserPasswordChange');
 
 Route::post('/createNewPassword', 'Auth\PasswordController@createNewPassword');
 
 
 Route::post('/sendemail', function () {
 
-    $data = array(
-        'name' => $_POST['email'],
-    );
+    session_start();
+    $user_id = DB::table('users')->where('email', $_POST['email'])->value('id');
 
-    Mail::send('emails.welcome', $data, function ($message) {
+    if ($user_id != null) {
+        $data = array(
+            'name' => $_POST['email'],
+        );
 
-        $message->from('newcassel@domain.com', 'New Cassel Work Order System');
-        $message->to($_POST['email'])->subject('Password Setup');
+        $_SESSION['user_id'] = $user_id;
 
-    });
+        error_log('Value of User ID for email password reset - ' . $user_id);
 
-    return view('auth.passwords.emailconfirmation');
+        Mail::send('emails.welcome', $data, function ($message) {
+            $message->from('newcassel@domain.com', 'New Cassel Work Order System');
+            $message->to($_POST['email'])->subject('Password Setup');
+
+        });
+
+        return view('auth.passwords.emailconfirmation');
+    } else {
+        return view('auth.passwords.usernotfound');
+    }
+
 });

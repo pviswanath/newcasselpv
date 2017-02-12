@@ -25,14 +25,13 @@ use Session;
 use Input;
 use DB;
 use Log;
+use Mail;
+
 
 class UsersController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('administrator', ['only' => ['create', 'edit', 'destroy', 'update']]);
-//        $this->middleware('administrator');
-//        $this->middleware('role:admin|root');
         $this->middleware('role:admin');
 
         $this->user = Auth::user();
@@ -75,14 +74,31 @@ class UsersController extends Controller
         Log::info('UsersController.store - Start: ');
         $input = $request->all();
         $this->populateCreateFields($input);
-        $input['password'] = bcrypt($request['password']);
+        $input['password'] = "";
         $input['active'] = $request['active'] == '' ? false : true;
-
+        $input['rec_email'] = $request['rec_email'] == '' ? false : true;
         $object = User::create($input);
         $this->syncRoles($object, $request->input('rolelist'));
         Session::flash('flash_message', 'User successfully added!');
         Log::info('UsersController.store - End: '.$object->id.'|'.$object->name);
-        return redirect()->back();
+
+        session_start();
+        $_SESSION['user_id'] = $object->id;
+        $_SESSION['user_email'] = $request['email'];
+
+        error_log('store - Value of User ID for creating password for the first time - ' .$object->id);
+
+        $data = array(
+            'name' => $request['email'],
+        );
+
+
+        Mail::send('emails.emailpassword', $data, function ($message) {
+            $message->from('newcassel@domain.com', 'New Cassel Work Order System');
+            $message->to($_SESSION['user_email'])->subject('New Account Setup');
+
+        });
+       return redirect()->back();
     }
 
     public function edit(User $users)
@@ -101,7 +117,7 @@ class UsersController extends Controller
         Log::info('UsersController.update - Start: '.$object->id.'|'.$object->name);
 //        $this->authorize($object);
         $this->populateUpdateFields($request);
-        $request['active'] = $request['active'] == '' ? false : true;
+        //$request['active'] = $request['active'] == '' ? true : false;
 
         $object->update($request->all());
         $this->syncRoles($object, $request->input('rolelist'));

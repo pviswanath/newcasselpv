@@ -8,6 +8,7 @@ use App\User;
 use Validator;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Contracts\Auth\CanResetPassword;
 
 use Hash;
 use Auth;
@@ -40,9 +41,11 @@ class PasswordController extends Controller
     }
 
 
-    public function showUserPasswordChange()
+    public function showUserPasswordChange($user_id_from_email)
     {
-        return view('auth.passwords.createpassword');
+        error_log('showUserPasswordChange - Value of User ID from email password url - ' . $user_id_from_email);
+        $this->viewData['user_id_from_email'] = $user_id_from_email;
+        return view('auth.passwords.createpassword', $this->viewData);
     }
 
     /**
@@ -53,19 +56,34 @@ class PasswordController extends Controller
      */
     public function createNewPassword()
     {
+        //Display the received id from url email
+
         //Get the user object from database
-        $user = Auth::user();
         $rules = array(
             'password' => 'required|confirmed|min:6',
         );
 
+        $user_id = $_POST["user_id_from_email"];
+        error_log('createNewPassword - Value of User ID receieved from email password url - ' . $user_id);
+
         $validator = Validator::make(Input::all(), $rules);
+        $user = User::find($user_id);
+        Auth::login($user);
+
+
         if ($validator->fails()) {
-            return view('auth.passwords.change')->withErrors($validator);
+            return view('auth.passwords.createpassword')->withErrors($validator);
         } else {
             $user->password = bcrypt(Input::get('password'));
             $user->save();
-            return view('auth.passwords.change')->with('Password has been changed');
+
+            $this->viewData['user_id_from_email'] = $user_id;
+
+            if ($user->hasRole('admin'))
+                return view('carousel', compact('user'));
+            else
+                return view('home', compact('user'));
+            //return view('auth.passwords.createpassword')->with('Password has been changed',  $this->viewData);
         }
     }
 }
