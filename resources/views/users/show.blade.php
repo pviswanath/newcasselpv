@@ -17,7 +17,7 @@
                 <a href="{{ URL::route('users.edit', ['id' => $user->id, 'method' => 'GET']) }}" class="btn btn-primary" style="color: white;"><i class="fa fa-btn fa-edit"></i>Edit</a>
             </div>
             @endif
-            <div><h3>View User: {{ $user->name }}</h3></div>
+            <div><h3>View User: {{ $user->f_name }}</h3></div>
         </div>
 
         @include ('users.partial', ['CRUD_Action' => 'View'])
