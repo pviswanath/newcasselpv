@@ -315,11 +315,11 @@ class AptressTableSeeder extends Seeder
 
 
         DB::table('aptress')->insert([
-            'apt_id' => ($apartment = Apartment::where('apt_number', '=', '1')->first()->id) , 'res_id' => ($resident = Resident::where('res_fname', '=', 'John')->first()->id), 'start_date' => date_create(),  'end_date' => '', 'status' => 'Active',
+            'apt_id' => ($apartment = Apartment::where('apt_number', '=', '1')->first()->id) , 'res_id' => ($resident = Resident::where('res_fname', '=', 'John')->first()->id), 'start_date' => date_create(),  'end_date' => date_create(), 'status' => 'Active',
         ]);
 
         DB::table('aptress')->insert([
-            'apt_id' => ($apartment = Apartment::where('apt_number', '=', '2')->first()->id) , 'res_id' => ($resident = Resident::where('res_fname', '=', 'David')->first()->id), 'start_date' => date_create(),  'end_date' => '', 'status' => 'Active',
+            'apt_id' => ($apartment = Apartment::where('apt_number', '=', '2')->first()->id) , 'res_id' => ($resident = Resident::where('res_fname', '=', 'David')->first()->id), 'start_date' => date_create(),  'end_date' => date_create(), 'status' => 'Active',
         ]);
 
     }
