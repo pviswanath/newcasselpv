@@ -133,7 +133,7 @@
 
 <div class="form-group" style="text-align: center">
     @if($CRUD_Action == 'Create')
-        {!! Form::button('<i class="fa fa-btn fa-save"></i>Create', ['type' => 'submit', 'class' => 'btn btn-success']) !!}
+        {!! Form::button('<i class="fa fa-btn fa-save"></i>Register', ['type' => 'submit', 'class' => 'btn btn-success']) !!}
 
         {!! Form::button('Reset', ['type' => 'reset', 'class' => 'btn btn-default']) !!}
     @else
