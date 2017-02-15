@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Resident;
-use App\Apartment;
 //use App\AppServiceProvider;
 //use App\Illuminate\Support\Facades\Validator;
 
@@ -23,10 +22,8 @@ class ResidentsController extends Controller
 
     public function create()
     {
-        /*$customers = Customer::lists('name','id');
-        return view('stocks.create', compact('customers'));*/
-        $apartment = Apartment:: lists('id');
-        return view('CreateRes.create',compact('apartment'));
+
+        return view('CreateRes.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -38,11 +35,13 @@ class ResidentsController extends Controller
         $this -> validate($request, [
             'res_pccid' => 'required|integer',
             'res_fname' => 'required|string',
+//            'res_mname' => 'required|string',
             'res_lname' => 'required|string',
             'res_gender' => 'required|string',
+//            'res_phone' => 'required|numeric|min:10',
+//            'res_cellphone' => 'required|numeric|min:10',
+//            'res_email' => 'required|email',
             'res_status' => 'required',
-            'apt_id' => 'required',
-            'cntr_name' => 'required'
         ]);
         $resident = new Resident();
         $resident->res_pccid = $request -> res_pccid;
@@ -56,8 +55,6 @@ class ResidentsController extends Controller
         $resident->res_pccid = $request -> res_pccid;
         $resident->res_status = $request -> res_status;
         $resident->res_comment = $request -> res_comment;
-        $resident->apt_id = $request -> apt_id;
-        $resident->cntr_name = $request -> cntr_name;
         $resident -> save();
         //$resident = Request::all();
         //Resident::create($resident);
@@ -83,23 +80,27 @@ class ResidentsController extends Controller
         $this -> validate ($request, [
             'res_pccid' => 'required|integer',
             'res_fname' => 'required|string',
+//            'res_mname' => 'string',
             'res_lname' => 'required|string',
-            'res_gender' => 'required',
-            'res_status' => 'required'
+//            'res_gender' => 'string',
+//            'res_phone' => 'numeric|min:10',
+//            'res_cellphone' => 'numeric|min:10',
+//            'res_email' => 'email',
+            'res_status' => 'required',
         ]);
 
         // $residentupdate = Request::all();
         $resident = Resident::find($id);
         $resident->res_pccid = $request->res_pccid ;
         $resident->res_fname = $request->res_fname;
-        $resident->res_mname = $request->res_mname;
+//        $resident->res_mname = $request->res_mname;
         $resident->res_lname = $request->res_lname;
-        $resident->res_gender = $request->res_gender;
-        $resident->res_phone = $request->res_phone;
-        $resident->res_cellphone = $request->res_cellphone;
-        $resident->res_email = $request->res_email;
+//        $resident->res_gender = $request->res_gender;
+//        $resident->res_phone = $request->res_phone;
+//        $resident->res_cellphone = $request->res_cellphone;
+//        $resident->res_email = $request->res_email;
         $resident->res_status = $request->res_status;
-        $resident->res_comment = $request->res_comment;
+//        $resident->res_comment = $request->res_comment;
         $resident->save();
         return redirect('resident');
     }

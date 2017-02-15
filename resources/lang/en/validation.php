@@ -28,7 +28,7 @@ return [
         'array'   => 'The :attribute must have between :min and :max items.',
     ],
     'boolean'              => 'The :attribute field must be true or false.',
-    'confirmed'            => 'The :attribute confirmation does not match.',
+    'confirmed'            => 'The :attribute does not match.',
     'date'                 => 'The :attribute is not a valid date.',
     'date_format'          => 'The :attribute does not match the format :format.',
     'different'            => 'The :attribute and :other must be different.',
@@ -108,22 +108,6 @@ return [
     |
     */
 
-    'attributes' => array(
-        'res_pccid'=>'Resident PCCID',
-        'res_fname'=> 'Resident First Name',
- //       'res_mname'=> 'Resident Middle Name',
-        'res_lname'=> 'Resident Last Name',
-        'res_phone'=> 'Resident Phone',
-        'res_gender'=> 'Resident Gender',
- //       'res_cellphone' => 'Resident Cellphone',
- //       'res_email'=> 'Resident Email',
- //       'res_comment' => 'Resident Comment',
-        'res_status' => 'Resident Status',
-        'apt_id' => 'Apartment ID',
-        'cntr_name' => 'Center Name',
-        'apt_floornumber' => 'Apartment Floor Number',
-        'apt_number' => 'Apartment Number',
-        'apt_comments'=> 'Apartment Commnent'
-    ),
+    'attributes' => [],
 
 ];

@@ -184,15 +184,15 @@ class ResidentsTableSeeder extends Seeder
     {
         DB::table('residents')->insert([
             'res_pccid' => '1', 'res_fname' => 'John', 'res_mname' => 'Mc', 'res_lname' => 'Mann', 'res_gender' => 'M', 'res_phone' => '1234567899', 'res_cellphone' => '4029876789',
-            'res_email' => 'jmmann@gmail.com', 'res_comment' => 'test user', 'res_status' => 'Active', 'apt_id' => 1, 'cntr_name' => 'Aksarben'
+            'res_email' => 'jmmann@gmail.com', 'res_comment' => 'test user', 'res_status' => 'Active',
         ]);
         DB::table('residents')->insert([
             'res_pccid' => '2', 'res_fname' => 'David', 'res_mname' => '', 'res_lname' => 'Schoof', 'res_gender' => 'M', 'res_phone' => '1234567890', 'res_cellphone' => '4567876543',
-            'res_email' => 'schoof@gmail.com', 'res_comment' => 'test user', 'res_status' => 'Active','apt_id' => 2, 'cntr_name' => 'Aksarben'
+            'res_email' => 'schoof@gmail.com', 'res_comment' => 'test user', 'res_status' => 'Active',
         ]);
         DB::table('residents')->insert([
             'res_pccid' => '3', 'res_fname' => 'Skyler', 'res_mname' => 'White', 'res_lname' => 'Walter', 'res_gender' => 'F', 'res_phone' => '5654343234', 'res_cellphone' => '5654343234',
-            'res_email' => 'skyler@hotmail.com', 'res_comment' => 'test user', 'res_status' => 'InActive', 'apt_id' => 3, 'cntr_name' => 'Aksarben'
+            'res_email' => 'skyler@hotmail.com', 'res_comment' => 'test user', 'res_status' => 'InActive',
         ]);
     }
 }

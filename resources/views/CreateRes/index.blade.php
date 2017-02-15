@@ -7,8 +7,6 @@
     <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr class="bg-info">
-            <th>Center Name</th>
-            <th>Apartment Id</th>
             <th>Resident Id</th>
             <th>PCCID</th>
             <th>First Name</th>
@@ -37,8 +35,6 @@
         </script>
         @foreach ($createres as $createres)
             <tr>
-                <td>{{ $createres->  cntr_name }}</td>
-                <td>{{ $createres->  apt_id }}</td>
                 <td>{{ $createres-> id }}</td>
                 <td>{{ $createres-> res_pccid }}</td>
                 <td>{{ $createres-> res_fname }}</td>
@@ -50,6 +46,8 @@
                 <td>{{ $createres-> res_email }}</td>
                 <td>{{ $createres-> res_comment }}</td>
                 <td>{{ $createres-> res_status }}</td>
+                <td>{{ $createres-> cntr_name }}</td>
+                <td>{{ $createres-> apt_id }}</td>
                 <td><a href="{{url('resident',$createres->id)}}" class="btn btn-primary">Read</a></td>
                 <td><a href="{{url('resident/update',$createres->id)}}" class="btn btn-warning">Update</a></td>
                 <td>

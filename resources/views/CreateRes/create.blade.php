@@ -11,19 +11,8 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(['url' => 'resident']) !!}
 
-    <div class="form-group">
-        {!! Form::label('apt_id', '*Apartment ID:') !!}
-        {!! Form::select('apt_id', $apartment) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::Label('cntr_name', '*Center Name:') !!}
-        {!! Form::select('cntr_name', [
-                        '' => '',
-                    'Omaha' => 'Omaha',
-                    'Aksarben' => 'Aksarben'], old('cntr_name'), ['class' => 'form-control']) !!}
-    </div>
+    {!! Form::open(['url' => 'resident']) !!}
     <div class="form-group">
         {!! Form::label('res_pccid', '*PCCID:') !!}
         {!! Form::text('res_pccid',null,['class'=>'form-control']) !!}
@@ -40,10 +29,10 @@
         {!! Form::label('res_lname', '*Last Name:') !!}
         {!! Form::text('res_lname',null,['class'=>'form-control']) !!}
     </div>
+
     <div class="form-group">
         {!! Form::Label('res_gender', '*Gender:') !!}
         {{ Form::select('res_gender', [
-            '' => '',
             'Female' => 'Female',
             'Male' => 'Male'], old('res_gender'), ['class' => 'form-control']) }}
     </div>
@@ -65,13 +54,11 @@
     </div>
 
     <div class="form-group">
-        {!! Form::Label('res_status', '*Status:') !!}
+        {!! Form::Label('res_status', '*Status') !!}
         {!! Form::select('res_status', [
-                      '' => '',
                     'Inactive' => 'Inactive',
                     'Active' => 'Active'], old('res_status'), ['class' => 'form-control']) !!}
     </div>
-
 
     <div class="form-group">
         {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}

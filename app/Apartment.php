@@ -13,11 +13,18 @@ class Apartment extends Model
         'apt_floornumber',
         'apt_number',
         'apt_comments',
-        'cntr_name'
+        'cntr_id',
     ];
 
-    public function residents() {
-        return $this->belongsTo('App\Resident','apt_id');
+    public function aptres() {
+        return $this->hasMany('App\aptres');
+    }
 
+    public function conres() {
+        return $this->hasMany('App\conres');
+    }
+
+    public function center() {
+        return $this->belongsTo('App\center');
     }
 }
