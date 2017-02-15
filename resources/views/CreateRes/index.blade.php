@@ -7,6 +7,8 @@
     <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr class="bg-info">
+            <th>Center Name</th>
+            <th>Apartment Id</th>
             <th>Resident Id</th>
             <th>PCCID</th>
             <th>First Name</th>
@@ -35,6 +37,8 @@
         </script>
         @foreach ($createres as $createres)
             <tr>
+                <td>{{ $createres->  cntr_name }}</td>
+                <td>{{ $createres->  apt_id }}</td>
                 <td>{{ $createres-> id }}</td>
                 <td>{{ $createres-> res_pccid }}</td>
                 <td>{{ $createres-> res_fname }}</td>

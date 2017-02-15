@@ -13,9 +13,6 @@
     @endif
     {!! Form::model($resident,['method' => 'PATCH','route'=>['resident.update',$resident->id]]) !!}
 
-    <div class="form-group">
-        {!! Form::label('id', '*Res ID:') !!}
-        {!! Form::text('id',null,['class'=>'form-control']) !!}
         <div class="form-group">
             {!! Form::label('res_pccid', '*PCCID:') !!}
             {!! Form::text('res_pccid',null,['class'=>'form-control']) !!}
@@ -35,6 +32,7 @@
         <div class="form-group">
             {!! Form::Label('res_gender', '*Gender:') !!}
             {{ Form::select('res_gender', [
+                  '' => '',
                 'Female' => 'Female',
                 'Male' => 'Male'], old('res_gender'), ['class' => 'form-control']) }}
         </div>
@@ -57,6 +55,7 @@
         <div class="form-group">
             {!! Form::Label('res_status', '*Status:') !!}
             {!! Form::select('res_status', [
+                        '' => '',
                         'Inactive' => 'Inactive',
                         'Active' => 'Active'], old('res_status'), ['class' => 'form-control']) !!}
         </div>
