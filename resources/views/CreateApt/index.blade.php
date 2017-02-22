@@ -1,9 +1,26 @@
-@include('common.nav')
+@include('layouts.app')
 @extends('CreateApt')
 @section('content')
-    <h1>New Cassel Apartment Information </h1>
-    <a href="{{url('/apartment/create')}}" class="btn btn-success">Create Apartment</a>
-    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="pull-right">
+                            <form action="{{ url('/apartment/create') }}" method="GET">{{ csrf_field() }}
+                                <button type="submit" id="create-user" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Create Apartment</button>
+                            </form>
+                        </div>
+                        <div><h4>&nbsp &nbsp &nbsp &nbsp &nbsp New Cassel Apartment Information</h4></div>
+                    </div>
+                    <div class="panel-body" style="width: 100%">
+                        <div class="table-responsive">
+
+
+
+{{--    <h1>New Cassel Apartment Information </h1>
+    <a href="{{url('/apartment/create')}}" class="btn btn-success">Create Apartment</a>--}}
+
     <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr class="bg-info">
@@ -46,4 +63,10 @@
         </tbody>
 
     </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 @endsection

@@ -1,4 +1,4 @@
-@include('common.nav')
+@extends('layouts')
 @extends('CreateApt')
 @section('content')
     <h3>New Cassel Retirement Center Apartment Information </h3>

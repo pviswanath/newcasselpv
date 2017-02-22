@@ -16,7 +16,7 @@ class ApartmentsController extends Controller
         foreach ($createapts as $apts) {//dd(Center::findOrFail(7)->cntr_name);
             $apts->centerName = Center::findOrFail($apts->cntr_id)->cntr_name;
         }
-        return view('CreateApt.index',compact('createapts'));
+        return view('   CreateApt.index',compact('createapts'));
     }
 
     public function show($id)
